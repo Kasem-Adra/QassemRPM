@@ -3,7 +3,7 @@
 ![CI](https://github.com/Kasem-Adra/QassemRPM/actions/workflows/main.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2-green.svg)
+![Version](https://img.shields.io/badge/version-v0.1.0-green.svg)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
 
 > **QassemRPM** is a modern and professional RPM packaging assistant, designed to simplify the workflows of system engineers and digital project managers. It automates the process of turning source code into stable RPM packages through a clean CLI and advanced validation tools.
@@ -14,35 +14,37 @@
 
 Automate the full package lifecycle for reliability and performance:
 
-```
+```text
 Source Code → Analyze → Robust SPEC Parsing → Build (Isolated) → Test → Documentation
 ```
+
 ## 💡 Why QassemRPM?
 
 Traditional RPM packaging can be complex, repetitive, and difficult to maintain in modern development environments.
+
 **QassemRPM** was created to simplify and modernize the RPM ecosystem for developers, DevOps engineers, and infrastructure teams.
 
 ### QassemRPM focuses on:
 
-* **Clean automation**
+- **Clean automation**  
   Reduce repetitive manual packaging work and simplify RPM workflows.
 
-* **Isolated builds**
+- **Isolated builds**  
   Support reproducible containerized builds using Docker or Podman.
 
-* **CI/CD friendly workflows**
+- **CI/CD friendly workflows**  
   Integrate naturally with GitHub Actions and automated deployment pipelines.
 
-* **Developer-first UX**
+- **Developer-first UX**  
   Provide a clean and modern CLI experience inspired by tools like `cargo`, `npm`, and `poetry`.
 
-* **SPEC intelligence**
+- **SPEC intelligence**  
   Improve SPEC parsing, validation, dependency analysis, and future AI-assisted generation.
 
-*  **Scalable infrastructure**
+- **Scalable infrastructure**  
   Prepare RPM packaging for modern backend systems, APIs, dashboards, and distributed build environments.
 
->  QassemRPM is not just a wrapper around `rpmbuild` — it is an attempt to bring RPM packaging into a modern software engineering workflow.
+> QassemRPM is not just a wrapper around `rpmbuild` — it is an attempt to bring RPM packaging into a modern software engineering workflow.
 
 ---
 
@@ -60,6 +62,15 @@ Completed in **v0.1** and **v0.2**:
 
 ---
 
+## ⚡ Quick Start
+
+```bash
+qassemrpm info examples/hello.spec
+qassemrpm validate examples/hello.spec
+```
+
+---
+
 ## 🛠 Installation
 
 ### Development & Contributing
@@ -68,6 +79,12 @@ Completed in **v0.1** and **v0.2**:
 git clone https://github.com/Kasem-Adra/QassemRPM.git
 cd QassemRPM
 python3 -m pip install -e .[dev]
+```
+
+### Standard Installation
+
+```bash
+pip install -e .
 ```
 
 ### Via Docker
@@ -125,21 +142,21 @@ qassemrpm build examples/hello.spec --topdir ./rpmbuild
 
 ### 🔄 v0.3 — In Progress
 - [ ] Containerized builds (Docker / Podman)
-- [ ] Publish Docker image to **GitHub Container Registry (GHCR)**
+- [ ] Publish Docker image to GitHub Container Registry (GHCR)
 - [ ] Improved error reports and build logs
 
 ### 🔜 v0.4 — Repository Management
 - [ ] Repository generation via `createrepo_c`
-- [ ] Package signing with **GPG**
+- [ ] Package signing with GPG
 - [ ] Artifact index
 
 ### 🔜 v0.5 — Backend
-- [ ] **FastAPI backend** for build queue management
+- [ ] FastAPI backend for build queue management
 - [ ] Live logs API
 - [ ] Build queue
 
 ### 🔜 v0.6+ — Advanced UI
-- [ ] **React dashboard** for live operation monitoring
+- [ ] React dashboard for live operation monitoring
 - [ ] Package pages
 - [ ] Dependency graph
 
@@ -158,17 +175,18 @@ qassemrpm build examples/hello.spec --topdir ./rpmbuild
 QassemRPM/
 ├── .github/
 │   └── workflows/
-│       └── main.yml        # CI/CD automation (Python 3.11)
+│       └── main.yml
 ├── qassemrpm/
-│   ├── cli.py              # Command-line interface
-│   ├── spec.py             # SPEC parser engine
-│   └── builder.py          # Build logic
-├── tests/                  # Automated tests (Pytest)
-├── examples/               # Sample SPEC files
-├── docs/                   # Generated documentation
-├── Dockerfile              # Docker image
-├── pyproject.toml          # Package configuration & dependencies
-├── LICENSE                 # MIT License (2026)
+│   ├── cli.py
+│   ├── spec.py
+│   ├── builder.py
+│   └── validator.py
+├── tests/
+├── examples/
+├── docs/
+├── Dockerfile
+├── pyproject.toml
+├── LICENSE
 └── README.md
 ```
 
@@ -176,18 +194,21 @@ QassemRPM/
 
 ## 🤝 Contributing
 
-Contributions are welcome! To get started:
+Contributions are welcome!
 
-1. Open an **Issue** first to discuss your proposed change
+1. Open an Issue first
 2. Fork the repository
-3. Create a new branch: `git checkout -b feature/your-feature`
-4. Commit your changes: `git commit -m 'Add: your feature'`
-5. Open a **Pull Request**
+3. Create a branch:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+4. Commit your changes
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — 2026.
+This project is licensed under the MIT License — 2026.
 
-Copyright © 2026 **Kasem Adra**
+Copyright © 2026 Kasem Adra
