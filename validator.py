@@ -28,12 +28,10 @@ def validate_spec(path: str):
 
     errors = []
 
-    # Validate required tags
     for tag in REQUIRED_TAGS:
         if f"{tag}:" not in content:
             errors.append(f"Missing required tag: {tag}")
 
-    # Validate required sections
     for section in REQUIRED_SECTIONS:
         if section not in content:
             errors.append(f"Missing required section: {section}")
