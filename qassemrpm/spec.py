@@ -1,3 +1,7 @@
+from pathlib import Path
+import re
+
+
 SECTION_NAMES = [
     "description",
     "prep",
@@ -8,9 +12,50 @@ SECTION_NAMES = [
 ]
 
 
+def parse_spec(path: str):
+    spec_path = Path(path)
+
+    if not spec_path.exists():
+        raise FileNotFoundError(f"SPEC file not found: {path}")
+
+    content = spec_path.read_text()
+
+    patterns = {
+        "name": r"^Name:\s*(.+)$",
+        "version": r"^Version:\s*(.+)$",
+        "release": r"^Release:\s*(.+)$",
+        "summary": r"^Summary:\s*(.+)$",
+        "license": r"^License:\s*(.+)$",
+    }
+
+    data = {}
+
+    for key, pattern in patterns.items():
+        match = re.search(pattern, content, re.MULTILINE)
+        data[key] = match.group(1).strip() if match else None
+
+    return data
+
+
+def render_markdown_doc(spec_data: dict):
+    return f"""# {spec_data.get("name", "Unknown Package")}
+
+## Package Information
+
+- Version: {spec_data.get("version")}
+- Release: {spec_data.get("release")}
+- Summary: {spec_data.get("summary")}
+- License: {spec_data.get("license")}
+"""
+
+
 def parse_spec_sections(path: str):
-    with open(path, "r") as f:
-        lines = f.readlines()
+    spec_path = Path(path)
+
+    if not spec_path.exists():
+        raise FileNotFoundError(f"SPEC file not found: {path}")
+
+    lines = spec_path.read_text().splitlines(keepends=True)
 
     sections = {}
     current_section = None
@@ -19,12 +64,10 @@ def parse_spec_sections(path: str):
     for line in lines:
         stripped = line.strip()
 
-        # Detect section start
         if stripped.startswith("%"):
             section_name = stripped[1:].split()[0]
 
             if section_name in SECTION_NAMES:
-                # Save previous section
                 if current_section:
                     sections[current_section] = "".join(buffer).strip()
 
@@ -32,11 +75,9 @@ def parse_spec_sections(path: str):
                 buffer = []
                 continue
 
-        # Append content
         if current_section:
             buffer.append(line)
 
-    # Save last section
     if current_section:
         sections[current_section] = "".join(buffer).strip()
 
