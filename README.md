@@ -17,6 +17,32 @@ Automate the full package lifecycle for reliability and performance:
 ```
 Source Code → Analyze → Robust SPEC Parsing → Build (Isolated) → Test → Documentation
 ```
+## 💡 Why QassemRPM?
+
+Traditional RPM packaging can be complex, repetitive, and difficult to maintain in modern development environments.
+**QassemRPM** was created to simplify and modernize the RPM ecosystem for developers, DevOps engineers, and infrastructure teams.
+
+### QassemRPM focuses on:
+
+* **Clean automation**
+  Reduce repetitive manual packaging work and simplify RPM workflows.
+
+* **Isolated builds**
+  Support reproducible containerized builds using Docker or Podman.
+
+* **CI/CD friendly workflows**
+  Integrate naturally with GitHub Actions and automated deployment pipelines.
+
+* **Developer-first UX**
+  Provide a clean and modern CLI experience inspired by tools like `cargo`, `npm`, and `poetry`.
+
+* **SPEC intelligence**
+  Improve SPEC parsing, validation, dependency analysis, and future AI-assisted generation.
+
+*  **Scalable infrastructure**
+  Prepare RPM packaging for modern backend systems, APIs, dashboards, and distributed build environments.
+
+>  QassemRPM is not just a wrapper around `rpmbuild` — it is an attempt to bring RPM packaging into a modern software engineering workflow.
 
 ---
 
