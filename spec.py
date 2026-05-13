@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 
+
 SECTION_NAMES = [
     "description",
     "prep",
@@ -22,8 +23,6 @@ def parse_spec(path: str):
 
     content = spec_path.read_text()
 
-    data = {}
-
     patterns = {
         "name": r"^Name:\s*(.+)$",
         "version": r"^Version:\s*(.+)$",
@@ -31,6 +30,8 @@ def parse_spec(path: str):
         "summary": r"^Summary:\s*(.+)$",
         "license": r"^License:\s*(.+)$",
     }
+
+    data = {}
 
     for key, pattern in patterns.items():
         match = re.search(pattern, content, re.MULTILINE)
@@ -43,14 +44,14 @@ def render_markdown_doc(spec_data: dict):
     """
     Render SPEC metadata into markdown.
     """
-    return f"""# {spec_data.get('name', 'Unknown Package')}
+    return f"""# {spec_data.get("name", "Unknown Package")}
 
 ## Package Information
 
-- Version: {spec_data.get('version')}
-- Release: {spec_data.get('release')}
-- Summary: {spec_data.get('summary')}
-- License: {spec_data.get('license')}
+- Version: {spec_data.get("version")}
+- Release: {spec_data.get("release")}
+- Summary: {spec_data.get("summary")}
+- License: {spec_data.get("license")}
 """
 
 
@@ -58,8 +59,12 @@ def parse_spec_sections(path: str):
     """
     Parse SPEC sections into a dictionary.
     """
-    with open(path, "r") as f:
-        lines = f.readlines()
+    spec_path = Path(path)
+
+    if not spec_path.exists():
+        raise FileNotFoundError(f"SPEC file not found: {path}")
+
+    lines = spec_path.read_text().splitlines(keepends=True)
 
     sections = {}
     current_section = None
